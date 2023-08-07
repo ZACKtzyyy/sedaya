@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{% static 'css/manageevent.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        li, a, button {
+            font-weight: 500;
+            font-size: 16px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 10%;
+            background-color: #000000;
+            padding: 1%;
+        }
+
+        .logo {
+            cursor: pointer;
+            margin-right: auto;
+            height: 90px;
+        }
+
+        .nav_links {
+            list-style: none;
+        }
+
+        .nav_links li {
+            display: inline-block;
+            padding: 0px 20px;
+        }
+
+        .nav_links li a {
+            transition: all 0.3s ease 0s;
+        }
+
+        .nav_links li a:hover {
+            color: #0088a9;
+        }
+
+        button {
+            margin-left: 20px;
+            padding: 9px 25px;
+            background-color: rgba(0, 136, 169, 1);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease 0s;
+        }
+
+        button:hover {
+            background-color: rgba(0, 136, 169, 0.8);
+        }
+
+        table {
+          font-size: 23px;
+          background-color: #808080;
+          border-collapse: collapse;
+          margin: 0 auto;
+          width: 90%; /* Increase the width of the table */
+        }
+
+        table, th, td {
+            border: 1px solid #ffffff;
+        }
+
+        th, td {
+          padding: 15px; /* Increase the padding for cells */
+          text-align: center;
+        }
+
+        .banner-area {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .video-container {
+            width: 90%;
+            height: 90%;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menubg {
+            background-color: #616060;
+        }
+
+        .topik {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .topik h2 {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: "Arial", sans-serif; /* Change the font here */
+        }
+    </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      {% load static %}
+      <img class="logo" src="{% static 'image/logomusicclub.png' %}" alt="">
+      <nav>
+        <ul class="nav_links">
+          <li><a href="{% url 'adminhomepage' %}">Home</a></li>
+          <li><a href="{% url 'addevents' %}">Add Event</a></li>
+          <li><a href="{% url 'manageevents' %}">Manage Event</a></li>
+          <li><a href="{% url 'addachievement' %}">Add Achievement</a></li>
+          <li><a href="{% url 'achievement' %}">Add Gallery</a></li>
+          <li><a href="{% url 'managemember' %}">Remove Member</a></li>
+        </ul>
+      </nav>
+      <a class="cta" href="{% url 'loginpage' %}"><button>Logout</button></a>
+    </header>
+
+    <div class="topik">
+      <h2>Manage Event</h2>
+    </div>
+  </div>
+  <br><br>
+  <table align="center" class="wowo">
+    <thead>
+      <tr class="papa">
+        <th>Event ID</th>
+        <th>Event Name</th>
+        <th>Event Description</th>
+        <th>Event Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in events %}
+        <tr>
+          <td>{{ event.eventsID }}</td>
+          <td>{{ event.eventsName }}</td>
+          <td>{{ event.eventsDesc }}</td>
+          <td>{{ event.eventsDate }}</td>
+          <td class="link-cell">
+            <a href="{% url 'updateevent' event.eventsName %}" class="poo">Update</a>
+            <a href="#" class="poo delete-btn" data-event-name="{{ event.eventsName }}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Add event listener for delete buttons
+      $('.delete-btn').click(function(event) {
+        event.preventDefault();
+        var event_name = $(this).data('event-name');
+
+        // Confirm the delete action
+        if (confirm("Are you sure you want to delete this event?")) {
+          // Send AJAX request to delete the event
+          $.ajax({
+            url: '/deleteevent/' + event_name + '/',
+            type: 'POST',
+            data: {
+              'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+              // Remove the deleted event row from the table
+              $('tr[data-event-name="' + event_name + '"]').remove();
+            },
+            error: function(xhr, errmsg, err) {
+              console.log(errmsg);
+            }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

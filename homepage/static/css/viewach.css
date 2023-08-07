@@ -1,0 +1,47 @@
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.card p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #666;
+}
+
+.event-id {
+    font-weight: bold;
+}
+
+.event-date {
+    color: #000;
+}
+
+.logout-link {
+    color: #000;
+    text-decoration: none;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}

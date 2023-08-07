@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/addachievement.css' %}">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <header>
+        {% load static %}
+        <img class ="logo" src="{% static 'image/logomusicclub.png' %}" alt="">
+        <nav>
+            
+            <ul class ="nav_links">
+                <li><a href="{% url 'adminhomepage' %}">Home</a> </li>
+                <li><a href="{% url 'addevents' %}">Add Event</a></li>
+                <li><a href="{% url 'manageevents' %}">Manage Event</a> </li>
+                <li><a href="{% url 'addachievement' %}">Add Achievement</a></li>
+                <li><a href="{% url 'achievement' %}">Add Gallery</a></li>
+                <li><a href="{% url 'managemember' %}">Remove Member</a></li>
+
+            </ul>
+        </nav>
+        <a class="cta" href="{% url 'loginpage' %}"><button>Logout</button></a>
+    </header>
+    
+    <div class="topik">
+        <h1>Add Achievement</h1>
+    </div>  
+
+    <div class="inputbox">
+        <form method="post">
+            {% csrf_token %}
+            <label for="achname">Achievement Name:</label>
+            <input id="achname" name="achname" type="text">
+            <label for="achdesc">Achievement Description:</label>
+            <input id="achdesc" name="achdesc" type="text">
+            <label for="achvenue">Achievement Venue:</label>
+            <input id="achvenue" name="achvenue" type="text">
+            <label for="achdate">Achievement Date:</label>
+            <input id="achdate" name="achdate" type="date">
+            <label for="achstanding">Achievement Standing:</label>
+            <input id="achstanding" name="achstanding" type="text">
+            <label for="achcategory">Achievement Category:</label>
+            <input id="achcategory" name="achcategory" type="text">
+            <input type="submit" value="SAVE">
+        </form>
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

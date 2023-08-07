@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/addevents.css' %}">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <header>
+        {% load static %}
+        <img class ="logo" src="{% static 'image/logomusicclub.png' %}" alt="">
+        <nav>
+            
+            <ul class ="nav_links">
+                <li><a href="{% url 'adminhomepage' %}">Home</a> </li>
+                <li><a href="{% url 'addevents' %}">Add Event</a></li>
+                <li><a href="{% url 'manageevents' %}">Manage Event</a> </li>
+                <li><a href="{% url 'addachievement' %}">Add Achievement</a></li>
+                <li><a href="{% url 'achievement' %}">Add Gallery</a></li>
+                <li><a href="{% url 'managemember' %}">Remove Member</a></li>
+
+            </ul>
+        </nav>
+        <a class="cta" href="{% url 'loginpage' %}"><button>Logout</button></a>
+    </header>
+
+    <div class="topik">
+        <h1>Add Events</h1>
+    </div>  
+
+    <div class="inputbox">
+        <form method="post">
+            {% csrf_token %}
+            <label for="eventsID">Events ID:</label>
+            <input id="eventsID" name="eventsID" type="text">
+            <label for="eventsName">Events Name:</label>
+            <input id="eventsName" name="eventsName" type="text">
+            <label for="eventsDesc">Events Description</label>
+            <input id="eventsDesc" name="eventsDesc" type="text">
+            <label for="eventsDate">Events Date</label>
+            <input id="eventsDate" name="eventsDate" type="date">
+
+            <input type ="submit" value="SAVE">
+        </form>
+        {% if message %}
+        <p>{{message}}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

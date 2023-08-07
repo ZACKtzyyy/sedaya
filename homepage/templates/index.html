@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Member Registration System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffd0b3;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff8c66;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ff8c66;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 3px;
+            font-size: 16px;
+            color: #333;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"] {
+            background-color: #ff8c66;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff704d;
+        }
+
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .message a {
+            color: #ff8c66;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .message a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to our Anime Community</h1>
+    <a href="{% url 'loginpage' %}">KUYY</a>
+    <a href="{% url 'mainpage' %}">SKUY</a>
+    <a href="{% url 'loginpage' %}">Login</a>
+    <form action="registration_process.php" method="POST">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <input type="submit" value="Join Now">
+
+        <p class="message">Already a member? <a href="login.php">Log in here</a></p>
+    </form>
+</body>
+</html>
+
+
+

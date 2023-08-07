@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Membership Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"],
+    .form-group input[type="date"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-group input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .form-group input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Membership Form</h2>
+    <form>
+      <div class="form-group">
+        <label for="memberid">Member ID:</label>
+        <input type="text" id="memberid" name="memberid" placeholder="Enter member ID" required>
+      </div>
+      <div class="form-group">
+        <label for="studentid">Student ID:</label>
+        <input type="text" id="studentid" name="studentid" placeholder="Enter student ID" required>
+      </div>
+      <div class="form-group">
+        <label for="membernohp">Phone Number:</label>
+        <input type="text" id="membernohp" name="membernohp" placeholder="Enter phone number" required>
+      </div>
+      <div class="form-group">
+        <label for="memberpassword">Password:</label>
+        <input type="password" id="memberpassword" name="memberpassword" placeholder="Enter password" required>
+      </div>
+      <div class="form-group">
+        <label for="memberdate">Membership Date:</label>
+        <input type="date" id="memberdate" name="memberdate" required>
+      </div>
+      <div class="form-group">
+        <label for="musicinstrument">Music Instrument:</label>
+        <input type="text" id="musicinstrument" name="musicinstrument" placeholder="Enter music instrument" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+    {% if message %}
+    <p>{{message}}</p>
+    {% endif %}
+  </div>
+</body>
+</html>
+
+
+
+

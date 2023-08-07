@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/manageevent.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        li, a, button {
+            font-weight: 500;
+            font-size: 16px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+      
+        .logo {
+            cursor: pointer;
+            margin-right: auto;
+            height: 90px;
+        }
+
+        .nav_links {
+            list-style: none;
+        }
+
+        .nav_links li {
+            display: inline-block;
+            padding: 0px 20px;
+        }
+
+        .nav_links li a {
+            transition: all 0.3s ease 0s;
+        }
+
+        .nav_links li a:hover {
+            color: #0088a9;
+        }
+
+        button {
+            margin-left: 0px;
+            padding: 9px 25px;
+            background-color: rgba(0, 136, 169, 1);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease 0s;
+        }
+
+        button:hover {
+            background-color: rgba(0, 136, 169, 0.8);
+        }
+
+       
+        .menubg {
+            background-color: #616060;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center; /* Center the form elements horizontally */
+            margin-top: -250px; /* Adjust the top margin to move the form further up */
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        
+        
+        input[type="text"],
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ffffff;
+            background-color: #616060;
+            color: #ffffff;
+            width: 100%;
+        }
+
+        button[type="submit"] {
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(0, 136, 169, 1);
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: rgba(0, 136, 169, 0.8);
+        }
+    </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      {% load static %}
+      <img class="logo" src="{% static 'image/logomusicclub.png' %}" alt="">
+      <nav>
+        <ul class="nav_links">
+          <li><a href="{% url 'adminhomepage' %}">Home</a></li>
+          <li><a href="{% url 'addevents' %}">Add Event</a></li>
+          <li><a href="{% url 'manageevents' %}">Manage Event</a></li>
+          <li><a href="{% url 'addachievement' %}">Add Achievement</a></li>
+          <li><a href="{% url 'achievement' %}">Add Gallery</a></li>
+          <li><a href="{% url 'managemember' %}">Manage Member</a></li>
+        </ul>
+      </nav>
+      <a class="cta" href="{% url 'membershiplogin' %}"><button>Logout</button></a>
+    </header>
+
+    <div class="container">
+        <h2>Update Event</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            
+                <button type="submit">Update Event</button>
+            </div>
+        </form>
+    </div>
+    
+  </div>
+</body>
+</html>

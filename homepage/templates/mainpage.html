@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    {% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/mainpage.css' %}">
+</head>
+<body>
+
+    <!-- The content specific to each page will be defined here -->
+    
+    <div class="container">
+        <div class="navbar">
+            <img src="{% static 'image/logomusicclub.png' %}" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="{% url 'mainpage' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'viewevents' %}">Events</a></li>
+                    <li><a href="{% url 'viewach' %}">Achievement</a></li>
+                    <li><a href="{% url 'viewachievements' %}">Gallery</a></li>
+                    <li><a href="{% url 'membership' %}">Join Membership</a></li>
+                    <li><a href="{% url 'membershiplogin' %}">Login Membership</a></li>
+                </ul>
+            </nav>
+        
+            <a href="{% url 'loginpage' %}" style="color: black; text-decoration: none;">Logout</a>
+            
+        </div>
+
+        <div class="content">
+            <a href="" class="btn">Kelab Sedaya</a>
+            <h1>Music Club <br> Registration System</h1>
+            <p>help smoothen the College Music Club Registration Process</p>
+
+            <div class="arrow-icons">
+                <img src="{% static 'image/back-arrow.png' %}">
+                <img src="{% static 'image/next-arrow.png' %}">
+            </div>
+        </div>
+
+        <img src="{% static 'image/boymusic.png' %}" class="feature-img">
+
+
+        <div class="social-links">
+            <a href="">FACEBOOK</a>
+            <a href="">INSTAGRAM</a>
+            <a href="">TWITTER</a>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
